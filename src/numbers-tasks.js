@@ -140,7 +140,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-  return value * 1;
+  return Number(value);
 }
 
 /**
@@ -198,8 +198,18 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  let rest = 0;
+  let result = true;
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) {
+      rest += 1;
+    }
+  }
+  if (rest > 0) {
+    result = false;
+  }
+  return result;
 }
 
 /**
@@ -217,8 +227,11 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (typeof Number(value) === 'number' && !Number.isNaN(Number(value))) {
+    return Number(value);
+  }
+  return def;
 }
 
 /**
@@ -491,8 +504,8 @@ function roundToSmallestInteger(/* number */) {
  * 5.1  => 6
  * -5.9 => -5
  */
-function roundToLargestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
 }
 
 /**
